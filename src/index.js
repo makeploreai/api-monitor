@@ -25,12 +25,6 @@ async function checkApi() {
       const errorMessage = `
                 There was an error with the API call to ${apiUrl}.
                 Error: ${error.message}
-                Suggested Measures:
-                1. Check if the API endpoint is correct.
-                2. Verify if the server hosting the API is up and running.
-                3. Ensure the API key (if any) is valid and has not expired.
-                4. Check network connectivity and firewall settings.
-                5. Review API documentation for any changes or updates.
             `;
       channel.send(errorMessage);
     }
