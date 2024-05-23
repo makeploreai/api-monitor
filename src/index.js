@@ -37,8 +37,9 @@ async function checkApi() {
   }
 }
 
+
 // Periodically check the API every 5 minutes
-setInterval(checkApi, 5 * 60 * 1000);
+setInterval(checkApi, 2 * 60 * 1000);
 
 client.once("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
