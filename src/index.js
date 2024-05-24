@@ -1,12 +1,13 @@
-const { Client, GatewayIntentBits } = require("discord.js");
+const { Client, IntentsBitField } = require("discord.js");
 const axios = require("axios");
 require("dotenv").config();
 
 const client = new Client({
   intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent,
+    IntentsBitField.Flags.Guilds,
+    IntentsBitField.Flags.GuildMessages,
+    IntentsBitField.Flags.GuildMessageReactions,
+    IntentsBitField.Flags.GuildMessageTyping,
   ],
 });
 
@@ -18,13 +19,6 @@ async function checkApi() {
   try {
     const response = await axios.get(apiUrl);
     console.log(`API call to ${apiUrl} was successful!`);
-    const channel = client.channels.cache.get(process.env.DISCORD_CHANNEL_ID);
-    if (channel) {
-      const errorMessage = `
-                API is Running Succesfully !
-            `;
-      channel.send(errorMessage);
-    }
   } catch (error) {
     console.error(`API call error for ${apiUrl}:`, error);
     const channel = client.channels.cache.get(process.env.DISCORD_CHANNEL_ID);
@@ -39,7 +33,7 @@ async function checkApi() {
 }
 
 
-// Periodically check the API every 5 minutes
+// Periodically check the API every 2 minutes
 setInterval(checkApi, 2 * 60 * 1000);
 
 client.once("ready", () => {
