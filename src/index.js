@@ -18,6 +18,13 @@ async function checkApi() {
   try {
     const response = await axios.get(apiUrl);
     console.log(`API call to ${apiUrl} was successful!`);
+    const channel = client.channels.cache.get(process.env.DISCORD_CHANNEL_ID);
+    if (channel) {
+      const errorMessage = `
+                API is Running Succesfully !
+            `;
+      channel.send(errorMessage);
+    }
   } catch (error) {
     console.error(`API call error for ${apiUrl}:`, error);
     const channel = client.channels.cache.get(process.env.DISCORD_CHANNEL_ID);
