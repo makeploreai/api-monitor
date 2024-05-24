@@ -14,7 +14,6 @@ const client = new Client({
 // Get the API URL from the environment variables
 const apiUrl = process.env.API_URL;
 
-// Function to check the API and send error messages if needed
 async function checkApi() {
   try {
     const response = await axios.get(apiUrl);
